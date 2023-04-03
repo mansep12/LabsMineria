@@ -1,0 +1,177 @@
+---
+title: 'Laboratorio 1.1: Exploración y Visualización de Datos'
+date: "Marzo 2023"
+author: 'Felipe Jara y Manuel Sepulveda'
+output:
+  html_document:
+    theme: default
+    toc: no
+  pdf_document:
+    toc: no
+---
+
+# Declaración de compromiso ético
+
+Nosotros **Felipe Jara R. y Manuel Alejandro Sepulveda Cabeza**, declaramos que realizamos de manera grupal los pasos de la presente actividad. También declaramos no incurrir en copia, ni compartir nuestras respuestas con otras personas ni con otros grupos. Por lo que, ratificamos que las respuestas son de nuestra propia confección y reflejan nuestro propio conocimiento.
+
+# Instrucciones
+
+1.  Trabajen en equipos de dos personas. Salvo excepciones, no se corregirá entregas con menos de dos integrantes.
+
+2.  Modifique este archivo `.Rmd` agregando sus respuestas donde corresponda.
+
+3.  Para cada pregunta, cuando corresponda, **incluya el código fuente que utilizó para llegar a su respuesta**.
+
+4.  El formato de entrega para esta actividad es un archivo html. **Genere un archivo HTML usando RStudio** y súbalo a U-Cursos.
+
+Basta con que uno de los integrantes haga la entrega. Si ambos hacen una entrega en U-Cursos, se revisará cualquiera de éstas.
+
+# Laboratorio
+
+## Teoría
+
+Se esperan respuestas breves y concisas, descritas con sus propias palabras según sus conocimientos y lo visto en clase. En caso de incluir alguna referencia externa, deben citarla.
+
+*1. ¿Cuál es el objetivo de la Minería de datos y qué la diferencia de Machine Learning? Dé un ejemplo para explicar la diferencia.*
+
+**El objetivo de la mineria de datos es extraer conocimiento, patrones o anomalias, esto usando grandes volumenes de datos.**
+
+**La mineria de datos tiene como principal enfoque el extraer conocimientos,mientras que el machine learning estudia,diseña y desarrolla logaritmos sobre los datos sin necesitar de programadores.**
+
+*2. ¿Cuáles son los tipos de errores que podemos encontrar en los datos? Comenta brevemente cada uno*
+
+**Un tipo de error es el ruido y outlier, el ruido se refiere a componente aleatoria en la medición y datos espaciales, temporales, y outliers son los objetos que son distintos a la mayoria de datos.**
+
+**Igualmente un tipo de error son los valores faltantes que principalmente aparecen por información no recolectada o atributos no aplicables a todos.**
+
+**Otro son los datos duplicados que se puede producir al juntar datos de diversas fuentes.**
+
+**Tambien pueden haber valores inconsistentes producto de datos mal ingresados.**
+
+## Práctica
+
+Ahora vamos a la parte práctica, a jugar con los datos.
+
+![](https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr6Xzuys4So2QOt5VBlU-Zn6FQhQS3TPdcjQ&usqp=CAU){width="250px"}
+
+En esta parte de la actividad trabajaremos con un dataset detable las 100 canciones más escuchadas en Spotify. El dataset lo pueden encontrar en: "<https://www.kaggle.com/datasets/amaanansari09/most-streamed-songs-all-time?resource=download>" junto con una decripción de este y también puede ser descargado desde ucursos. Este consiste de dos archivos "Features" que contiene 14 atributos "id","name","duration","energy", "key","loudness","mode","speechiness","acousticness","instrumentalness","liveness","valence","tempo", "danceability" y Streams el cual contiene 4 atributos: "Song","Artist", "Streams..Billions.", "Release.Date"
+
+Para cargar los datos desde tu computador, usa:
+
+```         
+```
+
+También puedes cargarlos remotamente con:
+
+```{r}
+df_features <- read.csv("https://raw.githubusercontent.com/mzambrano1/Datasets-CC5205-otono-2023/master/Lab%201.1/Features.csv", encoding = "UTF-8")
+df_streams <- read.csv("https://raw.githubusercontent.com/mzambrano1/Datasets-CC5205-otono-2023/master/Lab%201.1/Streams.csv", encoding = "UTF-8")
+```
+
+**Por cada pregunta adjunte el código R que utilizó para llegar a la respuesta. Respuestas sin código no recibirán puntaje.**
+
+### Exploración básica
+
+1.  ¿Cuáles son las dimensiones de ambos dataframes (filas, columnas)?
+
+    **Utilizando la función dim() podemos saber que df_features tiene dimensiones de (100,14) y df_streams de (100,4) .**
+
+```{r}
+dim(df_features)
+dim(df_streams)
+
+```
+
+2.  ¿Existen registros duplicados en alguno de los dataframes?
+
+    **Con nrow() y unique() nos podemos dar cuenta que en estos dataframe no hay registros duplicados .**
+
+```{r}
+#df_features
+nrow(df_features)-nrow(unique(df_features))
+#df_streams
+nrow(df_streams)-nrow(unique(df_streams))
+
+
+```
+
+3.  ¿Hay valores nulos en alguno de los dataframes?
+
+    **Usando el siguiente código podemos darnos cuenta de que no hay valores nulos en los dataframes.**
+
+```{r}
+#df_features
+sapply(df_features, function(x) sum(is.na(x)))
+#df_streams
+sapply(df_streams, function(x) sum(is.na(x)))
+
+```
+
+### Análisis
+
+Ahora para hacer el análisis más sencillo juntaremos ambos datasets usando como llave el nombre de la canción.
+
+```{r}
+df_songs <- merge(df_features, df_streams, by.x = "name", by.y = "Song")
+```
+
+1.  Lista todos los artistas (sin repetirse) que tienen canciones en este top 100.
+
+```{r}
+unique(df_songs$Artist)
+
+
+```
+
+2.  ¿Hay algún artista que tenga más de una canción entre el top 100?.
+
+```{r}
+canciones.repetidas <- aggregate(name ~ Artist, df_songs, FUN=length)
+canciones.repetidas[canciones.repetidas$name > 1,]
+```
+
+3.  Lista las canciones que tienen una duración igual o mayor a 4 minutos. Usa la función head() para mostrar los primeros ejemplos que cumplen dicha condición.
+
+```{r}
+a<-(df_songs[df_songs$duration >= 4.0, ]) 
+a[ c("name","duration")]
+
+
+
+```
+
+4.  Encuentra las 3 canciones más bailables según el dataset. ¿Estás de acuerdo con que estas canciones sean las más bailables?
+
+```{r}
+# RESPUESTA
+bailables<-df_songs[order(df_songs$danceability,decreasing = TRUE), ] 
+
+bailables[0:3, c("name","danceability")]
+```
+
+5.  Veamos cómo se distribuyen la cantidad de streams de las canciones, agregue un título y etiquetas necesarias para que la visualización se entienda por sí misma. ¿Entre qué valores se concentran la cantidad de streams? ¿Qué puedes decir de la presencia de outliers? si los hay, indica cuales son.
+
+```{r}
+#Respuesta
+hist(df_songs$Streams..Billions., main = "Distribución de cantidad de streams de las canciones", xlab="streams billions", ylab="frecuencia")
+
+#se concentra la cantidades de streams entre los valores 1.5 y 2.0 billones.
+#En este caso si los hay y son los casos que estan por los 3.5 billones que cuentan con una frecuencia muy baja
+
+
+```
+
+6.  Ahora veamos que es lo que se relaciona más a las canciones más escuchadas. Para esto elige dos atributos que creas importantes en una canción y crea un gráfico para cada uno de como se relaciona con la cantidad de streams. Agrega un título y etiquetas necesarias para que la visualización se entienda por sí misma. ¿Que puedes concluir al respecto? ¿Como se suelen comportar las canciones más populares?
+
+```{r}
+#Respuesta
+plot(df_songs$Streams..Billions., df_songs$duration, main = "Distribución de cantidad de streams de las canciones", xlab="streams billions", ylab="Duración de la canción")
+
+#Respuesta
+plot(df_songs$Streams..Billions., df_songs$danceability, main = "Distribución de cantidad de streams de las canciones", xlab="streams billions", ylab="Danceability")
+
+```
+
+Y eso es todo por hoy :)
+
+![](https://pbs.twimg.com/media/Dn8ZmB_VYAEzn5r.jpg){width="300px"}
