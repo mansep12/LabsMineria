@@ -66,54 +66,63 @@ Explore el set de datos para responder las siguientes preguntas:
 1.  ¿Cuáles son las dimensiones del dataset (filas, columnas)? (Recuerde adjuntar código).
 
 ```{r}
-# RESPUESTA
+dim(tipos)
 
 ```
 
 2.  ¿Qué describe cada línea del dataset? (ejemplifique tomando el dato de la fila 235, extienda la descripción)
 
+La linea describe la cantidad de accidentes de transito en un cierto año, si son de region/comuna y el nombre de esta, ademas el tipo de accidente al que pertenece esta cantidad. En la fila 235, hubieron 4 atropellos en la comuna de Palmilla, el año 2010.
+
 ```{r}
-# RESPUESTA
+tipos[235, ]
 
 ```
 
 3.  ¿Cuántos años diferentes abarca la información el dataset? Entregue una tabla que contenga los valores únicos que hay en la columna Anio.
 
 ```{r}
-# RESPUESTA
+unique(tipos$Anio)
 
 ```
 
 4.  Filtre los datos y genere un dataframe en el cual se indique la cantidad de accidentes tipo `Colision` que ocurrieron en el año `2011` y que no sean de la muestra `Nacional`.
 
 ```{r}
-# RESPUESTA
+agregacion<-aggregate(Cantidad ~ TipoAccidente + Anio + Muestra, tipos, FUN=sum)
 
+colisiones<-agregacion[agregacion$TipoAccidente == "Colision" & agregacion$Anio == 2011 & agregacion$Muestra != "Nacional",]
+colisiones
+```
+
+La tabla nos muestra la cantidad de colisiones en las muestras regional y comunal, se nos pide sumar esas cantidades, pero notar que la suma no representa la cantidad de accidentes el año 2011, ya que al haber comunas dentro de las regiones, los datos se repiten. Ahora sumamos:
+
+```{r}
+sum(colisiones[, c("Cantidad")])
 ```
 
 5.  Filtre los datos para incluir sólo los accidentes ocurridos el año 2010 a nivel regional. Genere un boxplot donde se indique la cantidad de accidentes categorizado por tipo de accidente.
 
 ```{r}
-# RESPUESTA
+library(ggplot2)
+tipos2010 <- with(tipos,tipos[Muestra == "Regional" & Anio == 2010, ])
+ggplot(tipos2010, aes(x = TipoAccidente, y = Cantidad)) + 
+  geom_boxplot()
 
 ```
 
-Este tipo de gráfico nos ayudará a entender como se distribuye los datos por cada tipo de accidentes. Es decir, podremos apreciar que tan dispersos o similares son los datos en todo el dataset. También, puede ser útil para observar valores atípicos u outliers en los datos.
-
-```{r}
-# RESPUESTA
-
+```{}
 ```
 
 6.  ¿Qué otra forma de explorar los datos podría agregar para el dataset de Accidentes de tránsito y qué información adicional aporta? Adjunte el código necesario.
 
 ```{r}
-# RESPUESTA
+# RESPUESTA nose responde con codigo
 ```
 
 ### Tweets con hashtag #GPT4
 
-A collection of tweets with the hashtag #GPT4 
+A collection of tweets with the hashtag #GPT4
 
 Considere el set de datos de tweets con el hashtag #GPT4 las siguientes columnas:
 
@@ -137,7 +146,7 @@ tweets <- read.csv("https://raw.githubusercontent.com/giturra/lab1.2/main/tweets
 head(tweets)
 ```
 
-7. Transforme la columna user_verified (de variables categóricas "True" and "False") a 0 y 1
+7.  Transforme la columna user_verified (de variables categóricas "True" and "False") a 0 y 1
 
 ```{r}
 # RESPUESTA
@@ -155,7 +164,6 @@ Realice una exploración por el set de datos para responder las siguientes pregu
 
 ```
 
-
 9.  Filtre el dataset y considere solamente los atributos numéricos.
 
 ```{r}
@@ -163,7 +171,7 @@ Realice una exploración por el set de datos para responder las siguientes pregu
 
 ```
 
-10.  ¿Qué atributos están más correlacionados con la cantidad de seguidores ("user_followers") del dataset filtrado en la pregunta anterior? ¿Qué puede inferir a partir de esto?
+10. ¿Qué atributos están más correlacionados con la cantidad de seguidores ("user_followers") del dataset filtrado en la pregunta anterior? ¿Qué puede inferir a partir de esto?
 
 ```{r}
 # RESPUESTA
