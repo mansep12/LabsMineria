@@ -48,7 +48,7 @@ La primera parte de esta actividad son preguntas teóricas que avanzaron en las 
 
 *5. ¿Cuál es la utilidad de las visualizaciones en el análisis de datos? Ejemplifique.*
 
-**Respuesta:**
+**Respuesta:** Las visualizaciones ayudan a representar los datos dándole énfasis al fenómeno que se quiera estudiar, por lo que permite entregar la información mucho más rápido y claramente, si es que la visualización está bien hecha. Por ejemplo si quiero saber cuál es el país con más PIB y como se compara con el resto, podría recorrer una tabla comparando cada país para descubrir el que tiene más, o podría poner a los países en un gráfico, y así sabría inmediatamente el país con más PIB, y como se compara con el resto.
 
 ## Práctica (Todas las preguntas deben agregar código que respalde su respuesta).
 
