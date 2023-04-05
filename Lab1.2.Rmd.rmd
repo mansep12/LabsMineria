@@ -111,7 +111,7 @@ ggplot(tipos2010, aes(x = TipoAccidente, y = Cantidad)) +
 
 ```
 
-```{}
+```         
 ```
 
 6.  ¿Qué otra forma de explorar los datos podría agregar para el dataset de Accidentes de tránsito y qué información adicional aporta? Adjunte el código necesario.
@@ -144,13 +144,24 @@ Considere el set de datos de tweets con el hashtag #GPT4 las siguientes columnas
 
 tweets <- read.csv("https://raw.githubusercontent.com/giturra/lab1.2/main/tweets.csv")
 head(tweets)
+
 ```
 
 7.  Transforme la columna user_verified (de variables categóricas "True" and "False") a 0 y 1
 
 ```{r}
-# RESPUESTA
+binary <- function(x) {
+  if (x=="True") {
+    x = 1
+  }
+  else {
+    x = 0
+  }
+}
+tweets$user_verified = sapply(tweets$user_verified, binary)
 
+
+tweets[,c("user_name", "user_verified")]
 ```
 
 Realice una exploración por el set de datos para responder las siguientes preguntas:
