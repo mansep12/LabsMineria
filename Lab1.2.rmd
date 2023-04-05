@@ -36,7 +36,7 @@ La primera parte de esta actividad son preguntas teóricas que avanzaron en las 
 
 *2. ¿Qué factores que ocasionan errores en el análisis de datos deben ser considerados para la limpieza de un set de datos? ¿Qué técnica estadística podría utilizar durante el proceso de limpieza? Ejemplifique con al menos una técnica.*
 
-**Respuesta:**
+**Respuesta:** Los factores que deben ser considerados deben ser los outliers, datos faltantes, ruido, datos duplicados, sesgo, entre otros. Existen varias técnicas para lidiar con los distinos problemas, como la agregación, el muestreo, y PCA. El muestreo toma en cuenta sólo una fracción de los datos, normalmente elegidos aleatoriamente, esto ayuda a controlar el sesgo, pero se arriesga a que los outliers afecten mucho a los datos si la muestra no es lo suficientemente grande.
 
 *3. Describa dos medidas de tendencia central y explique sus posibles utilidades para el análisis exploratorio de datos.*
 
