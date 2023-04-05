@@ -169,7 +169,16 @@ Realice una exploración por el set de datos para responder las siguientes pregu
 8.  ¿Qué columna/s posee/n valores en blanco o inexistentes? ¿Cómo manejaría esta situación? De dos soluciones distintas frente a este problema e implemente una de ellas en código.
 
 ```{r}
-# RESPUESTA
+blanco <- function(x) {
+  if (x==" "){
+    return(1)
+  }
+  else {
+    return(0)
+  }
+}
+#sapply(tweets, function(x) sum(is.na(x)))
+sapply(tweets, function(x) sum(blanco(x)))
 
 
 
@@ -178,7 +187,9 @@ Realice una exploración por el set de datos para responder las siguientes pregu
 9.  Filtre el dataset y considere solamente los atributos numéricos.
 
 ```{r}
-# RESPUESTA
+library(tidyverse)
+tweets %>%
+  select(where(is.numeric))
 
 ```
 
