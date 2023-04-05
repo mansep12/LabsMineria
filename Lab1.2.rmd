@@ -1,18 +1,20 @@
 ---
 title: 'Laboratorio 1.2: Exploración y Visualización de Datos'
-author: "******************************* AGREGUE SU NOMBRE *******************************"
+author: '******************************* Felipe Jara y Manuel Sepúlveda *******************************'
 date: "Abril 2023"
-output: 
-  html_document: 
+output:
+  html_document:
     theme: default
+    toc: yes
+  pdf_document:
     toc: yes
 ---
 
 # Declaración de compromiso ético
 
-Nosotros **AGREGUEN SUS NOMBRES COMPLETOS y SECCIÓN**, declaramos que realizamos de manera grupal los pasos de la presente actividad. También declaramos no incurrir en copia, ni compartir nuestras respuestas con otras personas ni con otros grupos. Por lo que, ratificamos que las respuestas son de nuestra propia confección y reflejan nuestro propio conocimiento.
+Nosotros **Felipe Mauricio Jara Ribet y Manuel Alejandro Sepúlveda Cabeza sección 1 y 2**, declaramos que realizamos de manera grupal los pasos de la presente actividad. También declaramos no incurrir en copia, ni compartir nuestras respuestas con otras personas ni con otros grupos. Por lo que, ratificamos que las respuestas son de nuestra propia confección y reflejan nuestro propio conocimiento.
 
-# Instrgit ucciones
+# Instrucciones
 
 1.  Trabajen en equipos de dos personas. Salvo excepciones, no se corregirá entregas con menos de dos integrantes.
 
@@ -165,7 +167,7 @@ binary <- function(x) {
 tweets$user_verified = sapply(tweets$user_verified, binary)
 
 
-tweets[,c("user_name", "user_verified")]
+head(tweets[,c("user_name", "user_verified")])
 ```
 
 Realice una exploración por el set de datos para responder las siguientes preguntas:
