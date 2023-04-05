@@ -40,7 +40,9 @@ La primera parte de esta actividad son preguntas teóricas que avanzaron en las 
 
 *3. Describa dos medidas de tendencia central y explique sus posibles utilidades para el análisis exploratorio de datos.*
 
-**Respuesta:**
+**Respuesta:** La media es la mas conocida, esta se obtiene al dividir la suma de varios valores por la cantidad de estos valores, el gran problema de la media es que es muy sensible a outliers o valores atipicos, ya que afectan fuertemente en el resultado dando una ilusion sobre los datos errada.
+
+La mediana representa la posicion central de la variable que separa la mitad inferior de la superior de los datos, es decir que la mitad de valores son menores o iguales a el y la otra mayores o iguales a el.
 
 **gitLa media es la mas conocida, esta se obtiene al dividir la suma de varios valores por la cantidad de estos valores, el gran problema de la media es que es muy sensible a outliers o valores atipicos, ya que afectan fuertemente en el resultado dando una ilusion sobre los datos errada.**
 
