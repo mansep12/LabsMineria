@@ -152,10 +152,10 @@ head(tweets)
 ```{r}
 binary <- function(x) {
   if (x=="True") {
-    x = 1
+    x = as.integer(1)
   }
   else {
-    x = 0
+    x = as.integer(0)
   }
 }
 tweets$user_verified = sapply(tweets$user_verified, binary)
@@ -196,6 +196,6 @@ tweets %>%
 10. ¿Qué atributos están más correlacionados con la cantidad de seguidores ("user_followers") del dataset filtrado en la pregunta anterior? ¿Qué puede inferir a partir de esto?
 
 ```{r}
-# RESPUESTA
+plot(tweets$user_followers, tweets$user_friends, main="user_friends")
 
 ```
