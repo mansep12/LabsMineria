@@ -177,6 +177,7 @@ blanco <- function(x) {
     return(0)
   }
 }
+tweets$
 #sapply(tweets, function(x) sum(is.na(x)))
 sapply(tweets, function(x) sum(blanco(x)))
 
@@ -188,7 +189,7 @@ sapply(tweets, function(x) sum(blanco(x)))
 
 ```{r}
 library(tidyverse)
-tweets %>%
+numericos <- tweets %>%
   select(where(is.numeric))
 
 ```
@@ -196,6 +197,7 @@ tweets %>%
 10. ¿Qué atributos están más correlacionados con la cantidad de seguidores ("user_followers") del dataset filtrado en la pregunta anterior? ¿Qué puede inferir a partir de esto?
 
 ```{r}
-plot(tweets$user_followers, tweets$user_friends, main="user_friends")
-
+cov(numericos[,1:4])
 ```
+
+user_followers es el atributo mas correlacionado, ya que su covarianza es la más alta, lo que quiere decir que mientras mas seguidores, más probabilidad de que el usuario esté verificado.
