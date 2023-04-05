@@ -116,9 +116,8 @@ ggplot(tipos2010, aes(x = TipoAccidente, y = Cantidad)) +
 
 6.  ¿Qué otra forma de explorar los datos podría agregar para el dataset de Accidentes de tránsito y qué información adicional aporta? Adjunte el código necesario.
 
-```{r}
-# RESPUESTA nose responde con codigo
-```
+  Se podría ver los tipos de accidente más comunes por región/comuna, también ver el cambio de la cantidad de accidentes de un año a otro. Si tuvieramos información sobre la población, podríamos ajustar los datos para saber en que parte del país es más o menos probable involucrarse en un accidente de tránsito.
+
 
 ### Tweets con hashtag #GPT4
 
