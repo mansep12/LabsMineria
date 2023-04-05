@@ -32,7 +32,7 @@ La primera parte de esta actividad son preguntas teóricas que avanzaron en las 
 
 *1. ¿Cuál es la diferencia entre los atributos cualitativos y los cuantitativos? ¿Se puede transformar un atributo cuantitativo en cualitativo y viceversa? Ejemplifique.*
 
-**Respuesta:**
+**Respuesta:** Los atributos cualitativos se refieren a cualidades de lo que se esté midiendo, tomando de ejemplo a una persona, algunos atributos cualtitativos podrían ser color de piel, estado civil, comida favorita. Los cuantitativos son los atributos medibles numéricamente, por ejemplo la altura, peso, saldo en la cuenta, etc. Se pueden transformar el uno al otro siempre y cuando la codificación que se use tenga sentido para lo que se vaya a usar, por ejemplo podemos convertir el color de piel a un valor RGB cuantitativo, pero no sería de mucha utilidad, en cambio podríamos usar el saldo en la cuenta para definir estratos socioeconómicos cualitativos, que sí podría servir para analizar.
 
 *2. ¿Qué factores que ocasionan errores en el análisis de datos deben ser considerados para la limpieza de un set de datos? ¿Qué técnica estadística podría utilizar durante el proceso de limpieza? Ejemplifique con al menos una técnica.*
 
@@ -44,7 +44,7 @@ La primera parte de esta actividad son preguntas teóricas que avanzaron en las 
 
 *4. ¿Qué es una matriz de correlación y para qué sirve?*
 
-**Respuesta:**
+**Respuesta:** Una matriz de correlación muestra todos los coeficientes de correlación entre las columnas de un dataframe, así permite visualizar rápidamente cuales atributos tienen mayor o menor correlación.
 
 *5. ¿Cuál es la utilidad de las visualizaciones en el análisis de datos? Ejemplifique.*
 
@@ -116,8 +116,7 @@ ggplot(tipos2010, aes(x = TipoAccidente, y = Cantidad)) +
 
 6.  ¿Qué otra forma de explorar los datos podría agregar para el dataset de Accidentes de tránsito y qué información adicional aporta? Adjunte el código necesario.
 
-  Se podría ver los tipos de accidente más comunes por región/comuna, también ver el cambio de la cantidad de accidentes de un año a otro. Si tuvieramos información sobre la población, podríamos ajustar los datos para saber en que parte del país es más o menos probable involucrarse en un accidente de tránsito.
-
+Se podría ver los tipos de accidente más comunes por región/comuna, también ver el cambio de la cantidad de accidentes de un año a otro. Si tuvieramos información sobre la población, podríamos ajustar los datos para saber en que parte del país es más o menos probable involucrarse en un accidente de tránsito.
 
 ### Tweets con hashtag #GPT4
 
@@ -176,8 +175,8 @@ sapply(tweets, function(x) sum(x==""))
 
 
 ```
-Vemos que ninguna columna tiene valores inexistentes. Las columnas con valores en blanco son: user_name, user_location, user_description y hashtags.
 
+Vemos que ninguna columna tiene valores inexistentes. Las columnas con valores en blanco son: user_name, user_location, user_description y hashtags.
 
 9.  Filtre el dataset y considere solamente los atributos numéricos.
 
@@ -191,7 +190,7 @@ numericos <- tweets %>%
 10. ¿Qué atributos están más correlacionados con la cantidad de seguidores ("user_followers") del dataset filtrado en la pregunta anterior? ¿Qué puede inferir a partir de esto?
 
 ```{r}
-round(cov(numericos[,1:4]),1)
+round(cor(numericos[,1:4]),3)
 ```
 
-user_followers es el atributo mas correlacionado, ya que su covarianza es la más alta, lo que quiere decir que mientras mas seguidores, más probabilidad de que el usuario esté verificado.
+user_followers es el atributo mas correlacionado, ya que su coeficiente de correlación es el más alto, lo que quiere decir que mientras mas seguidores, más probabilidad de que el usuario esté verificado.
