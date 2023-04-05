@@ -168,22 +168,17 @@ Realice una exploración por el set de datos para responder las siguientes pregu
 
 8.  ¿Qué columna/s posee/n valores en blanco o inexistentes? ¿Cómo manejaría esta situación? De dos soluciones distintas frente a este problema e implemente una de ellas en código.
 
-```{r}
-blanco <- function(x) {
-  if (x==" "){
-    return(1)
-  }
-  else {
-    return(0)
-  }
-}
-tweets$
-#sapply(tweets, function(x) sum(is.na(x)))
-sapply(tweets, function(x) sum(blanco(x)))
+Podríamos convertir todos los espacios en blanco a NA, para así usar la funcions is.na() para contar los espacios blanco o inexistentes. También se puede contar por separado y fijarse cuales columnas son blancas e inexistentes, se implementará esta última en código.
 
+```{r}
+
+sapply(tweets, function(x) sum(is.na(x)))
+sapply(tweets, function(x) sum(x==""))
 
 
 ```
+Vemos que ninguna columna tiene valores inexistentes. Las columnas con valores en blanco son: user_name, user_location, user_description y hashtags.
+
 
 9.  Filtre el dataset y considere solamente los atributos numéricos.
 
@@ -197,7 +192,7 @@ numericos <- tweets %>%
 10. ¿Qué atributos están más correlacionados con la cantidad de seguidores ("user_followers") del dataset filtrado en la pregunta anterior? ¿Qué puede inferir a partir de esto?
 
 ```{r}
-cov(numericos[,1:4])
+round(cov(numericos[,1:4]),1)
 ```
 
 user_followers es el atributo mas correlacionado, ya que su covarianza es la más alta, lo que quiere decir que mientras mas seguidores, más probabilidad de que el usuario esté verificado.
